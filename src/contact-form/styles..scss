@@ -1,0 +1,10 @@
+.contact-from-buttons{
+  button{
+    margin-right: 10px;
+  }
+}
+
+.form-control.in-valid{
+  border-color: #ff0000;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+}
