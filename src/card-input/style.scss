@@ -1,0 +1,27 @@
+.input-group{
+  position: relative;
+
+  input, .input-group-text{
+    background: rgba(255,255,255,.4);
+    border-color: rgba(255,255,255,.6);
+  }
+
+  input{
+    transition: all .5s ease-in-out;
+    color: #010415;
+    font-family: 'Mukta', sans-serif;
+    font-size: 24px;
+  }
+
+  input:focus{
+    box-shadow: none;
+    background: rgba(255,255,255,.6);
+    border-color: rgba(255,255,255,.8);
+  }
+}
+
+.send-button{
+  min-width: 130px;
+  text-align: center;
+  text-transform: uppercase;
+}

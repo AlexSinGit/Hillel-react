@@ -1,81 +1,43 @@
 import './App.scss';
 import React from 'react';
-import ContactTable from './contact-table';
-import ContactFrom from './contact-form';
+import CardInput from './card-input';
 
 class App extends React.Component {
 
   state = {
-    addContactActive: true,
-    formVisible: false,
-    contacts: this.initStartContactsList()
+    cardNumber: '',
+    sendDisabled: true
   }
 
-  initStartContactsList(){
-    let contactsString = localStorage.getItem('contacts');
-    if(contactsString === null){
-      return [];
-    }else{
-      return JSON.parse(contactsString);
-    }
-  }
-
-  formToggle(){
+  setCardNum(num){
     this.setState({
-      formVisible: !this.state.formVisible,
-      addContactActive: !this.state.addContactActive
-    });
-  }
-
-  addContact({firstName, lastName, phone}){
-    let contacts = this.state.contacts;
-
-    contacts.push({
-      firstName,
-      lastName,
-      phone
-    });
-
-    this.setState({
-      contacts: contacts
-    });
-
-    this.formToggle();
-  }
-
-  removeContact(_index){
-    let contacts = this.state.contacts;
-    this.setState({
-      contacts: contacts.filter((item, index) => {
-        return (_index !== index) ? item : false;
-      })
+      cardNumber: num
     }, () => {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      this.setState({
+        sendDisabled: this.state.cardNumber.length !== 16
+      });
     });
+  }
+
+  sendCardNumber(){
+    alert(this.state.cardNumber);
   }
 
   render() {
-    let form;
-    if(this.state.formVisible) {
-      form = <ContactFrom addCallback={this.addContact.bind(this)}
-                          closeCallback={this.formToggle.bind(this)}/>
-
-    }else{
-      form = false;
-    }
     return (
         <div className="container">
           <div className="row">
-            <div className="col">
-              <div className="card mt-2">
-                <ContactTable contacts={this.state.contacts} removeCallback={this.removeContact.bind(this)}/>
+            <div className="col-6 mx-auto">
+              <div className="card-wrapper">
+                <CardInput cardNum={this.state.cardNumber} setCardNum={this.setCardNum.bind(this)}/>
+                <button disabled={this.state.sendDisabled} className="btn btn-primary mt-4 send-button" onClick={this.sendCardNumber.bind(this)}>
+                  <b>Send</b>
+                </button>
               </div>
-              <button disabled={!this.state.addContactActive} className="btn btn-primary mt-3 mb-3" onClick={this.formToggle.bind(this)}>Добавить контакт</button>
-              { form }
             </div>
           </div>
         </div>
-    )
+    );
   }
 }
 
