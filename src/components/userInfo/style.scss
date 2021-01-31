@@ -1,0 +1,23 @@
+.user-info-wrap{
+  min-height: 507px;
+  text-align: center;
+  background: #fff;
+  padding: 15px;
+  .avatar{
+    width: 70px;
+    height: 70px;
+    background: #444753;
+    color: #fff;
+    margin: 0 auto 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .actions{
+    margin-top: 20px;
+    button{
+      margin-right: 10px;
+    }
+  }
+}
