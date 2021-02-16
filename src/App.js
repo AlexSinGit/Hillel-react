@@ -1,19 +1,15 @@
 import './App.scss';
 import React from 'react';
-import {TaskInput} from './components/taskInput';
-import {TaskList} from './components/toDoList';
+import Navbar from './components/Navbar';
+import Content from './components/Content';
 
 class App extends React.Component {
 
   render() {
     return (
-        <div className="container">
-          <div className="row">
-            <div className="col-5 mx-auto">
-              <TaskInput/>
-              <TaskList />
-            </div>
-          </div>
+        <div className="page-wrap">
+          <Navbar/>
+          <Content/>
         </div>
     );
   }
